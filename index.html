@@ -115,70 +115,67 @@
             font-size: 1em;
         }
     </style>
-
-    <script type="module">
-        // Firebase SDK 라이브러리 가져오기
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
-
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-            apiKey: "AIzaSyDamt9Y3u7C3yPwtEXNpOz6Cf63XpaBo4Q",
-            authDomain: "sprta-1c57d.firebaseapp.com",
-            projectId: "sprta-1c57d",
-            storageBucket: "sprta-1c57d.firebasestorage.app",
-            messagingSenderId: "63647145024",
-            appId: "1:63647145024:web:341ac2bea8f2f79248d3a5",
-            measurementId: "G-DQT7SLCRFQ"
-        };
-
-
-        // Firebase 인스턴스 초기화
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        $("#postbtn").click(async function () {
-
-            let name = $('#name').val();
-            let content = $('#content').val();
-
-            let doc = {
-                'name': name,
-                'content': content,
+        <script type="module">
+            // Firebase SDK 라이브러리 가져오기
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+            import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+            import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+            import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    
+    
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyDamt9Y3u7C3yPwtEXNpOz6Cf63XpaBo4Q",
+                authDomain: "sprta-1c57d.firebaseapp.com",
+                projectId: "sprta-1c57d",
+                storageBucket: "sprta-1c57d.firebasestorage.app",
+                messagingSenderId: "63647145024",
+                appId: "1:63647145024:web:341ac2bea8f2f79248d3a5",
+                measurementId: "G-DQT7SLCRFQ"
             };
-            await addDoc(collection(db, "guestbook"), doc);
-            alert('저장 완료');
-            window.location.reload();
-        })
-
-        let docs = await getDocs(collection(db, "guestbook"));
-        docs.forEach((doc) => {
-            let row = doc.data();
-
-            let name = row['name'];
-            let content = row['content'];
-
-
-            let temp_html = `            
-    <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">${row['name']}</h5>
-            <hr>
-            <p class="card-text">${row['content']}</p>
-          </div>
-        </div>
-      </div>`;
-            $('#card').append(temp_html);
-        });
-
-
-    </script>
-
-
+    
+    
+            // Firebase 인스턴스 초기화
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+    
+            $("#postbtn").click(async function () {
+    
+                let name = $('#name').val();
+                let content = $('#content').val();
+    
+                let doc = {
+                    'name': name,
+                    'content': content,
+                };
+                await addDoc(collection(db, "guestbook"), doc);
+                alert('저장 완료');
+                window.location.reload();
+            })
+    
+            let docs = await getDocs(collection(db, "guestbook"));
+            docs.forEach((doc) => {
+                let row = doc.data();
+    
+                let name = row['name'];
+                let content = row['content'];
+    
+    
+                let temp_html = `            
+            <div class="col">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">${row['name']}</h5>
+                    <hr>
+                    <p class="card-text">${row['content']}</p>
+                  </div>
+                </div>
+              </div>`;
+                $('#card').append(temp_html);
+            });
+    
+    
+        </script>
 </head>
 
 <body>
@@ -222,24 +219,24 @@
                 <p class="card-text">캠프 수료까지 포기하지 말자</p>
             </a>
         </div>
+        <div class="guestbook">
+            <div class="name">
+                <label for="exampleInputEmail1" class="form-label">이름</label>
+                <input id="name" type="text" class="form-control" aria-describedby="emailHelp">
+            </div>
+            <div class="content">
+                <label for="exampleInputEmail1" class="form-label">방명록을 작성해주세요.</label>
+                <textarea id="content" class="form-control" rows="3"></textarea>
+            </div>
+            <button id="postbtn" type="button" class="btn btn-outline-dark">작성하기</button>
+        </div>
+        <div class="mycards">
+            <div id="card" class="row row-cols-1 row-cols-md-4 g-4">
+            </div>
+        </div>
+    </div>
 
-    </div>
 
-    <div class="guestbook">
-        <div class="name">
-            <label for="exampleInputEmail1" class="form-label">이름</label>
-            <input id="name" type="text" class="form-control" aria-describedby="emailHelp">
-        </div>
-        <div class="content">
-            <label for="exampleInputEmail1" class="form-label">방명록을 작성해주세요.</label>
-            <textarea id="content" class="form-control" rows="3"></textarea>
-        </div>
-        <button id="postbtn" type="button" class="btn btn-outline-dark">작성하기</button>
-    </div>
-    <div class="mycards">
-        <div id="card" class="row row-cols-1 row-cols-md-4 g-4">
-        </div>
-    </div>
 
 </body>
 
