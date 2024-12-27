@@ -143,8 +143,13 @@
     
             $("#postbtn").click(async function () {
     
-                let name = $('#name').val();
-                let content = $('#content').val();
+                let name = $('#name').val().trim();
+                let content = $('#content').val().trim();
+
+                if (!name || !content) {
+                    alert('이름과 내용을 모두 입력해주세요!');
+                    return;
+                }
     
                 let doc = {
                     'name': name,
