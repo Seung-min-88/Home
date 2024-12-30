@@ -18,6 +18,12 @@
 ![image](https://github.com/user-attachments/assets/10052894-c704-4563-b6c4-ba52e3527122)<br>
 ![image](https://github.com/user-attachments/assets/d08741fa-5345-4f91-a594-4f5665887184)<br>
 
+# 개인페이지
+https://seung-min-88.github.io/Mypage/
+
+# 시연영상
+https://youtu.be/OuxFPhm7gYA
+
 # 개인 소감
 이승민 - github를 처음 사용해 팀원들과 함께 프로젝트 진행할 때 애를 먹었지만 좋은 경험이였습니다!<br>
 
